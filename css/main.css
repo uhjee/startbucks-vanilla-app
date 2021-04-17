@@ -14,6 +14,10 @@ img {
   display: block;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* HEADER */
 header {
   background-color: royalblue;
@@ -34,4 +38,50 @@ header .logo {
   top: 0;
   bottom: 0;
   margin: auto auto;
+
+  display: none;
+}
+
+/* @TODO 미리 html 구조대로 css 셀렉터를 선언해두고, 퍼블리싱하는 것도 좋은 방법 */
+header .sub-menu {
+}
+header .sub-menu ul.menu {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+}
+header .sub-menu ul.menu li {
+  position: relative;
+}
+header .sub-menu ul.menu li::before {
+  /* content 속성이 없으면 before 가상요소가 생성되지 않는다.  */
+  content: '';
+  width: 1px;
+  height: 12px;
+  background-color: #e5e5e5;
+  /* absolute  : display 가 block으로 변경 */
+  /* 아래 속성들로 수직 중앙 정렬 */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+header .sub-menu ul.menu li:first-child::before {
+  display: none;
+}
+/* a tag 등 click 요소는 보다 UX 측면에서 편리하도록 padding값을 넣어주자(block 요소로 변경) */
+header .sub-menu ul.menu li a {
+  font-size: 12px;
+  padding: 11px 16px;
+  display: block;
+  color: #656565;
+}
+header .sub-menu ul.menu li a:hover {
+  /* 검정색: #000000 */
+  color: #000;
+}
+header .sub-menu .search {
+}
+header .sub-menu .search input {
+}
+header .sub-menu .search .material-icons {
 }
