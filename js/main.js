@@ -47,3 +47,21 @@ window.addEventListener(
     }
   }, 300),
 );
+
+// fade-in 효과(gsap - delay option 사용)
+const fadeEls = document.querySelectorAll('.visual .fade-in');
+
+fadeEls.forEach((fadeEl, index) => {
+  gsap.to(fadeEl, 1.5, {
+    // 지연 시간 설정 - index로 동적으로 설정
+    delay: (index + 1) * 0.7,
+    opacity: 1,
+  });
+});
+
+// swiper lib 사용
+new Swiper('.notice-line .swiper-container', {
+  direction: 'vertical',
+  autoplay: true,
+  loop: true,
+});
