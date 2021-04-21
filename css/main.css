@@ -81,6 +81,7 @@ a {
 /* HEADER */
 header {
   width: 100%;
+  /* fixed 스크롤 영향 없도록 뷰포트에 고정 */
   position: fixed;
   top: 0;
   background-color: #f6f5f0;
@@ -93,7 +94,7 @@ header > .inner {
 }
 
 header .logo {
-  /* 세로 중앙 배치 : height + top + bottom + margin: auto + 부모 relative*/
+  /* 세로 중앙(가운데) 배치 : height + top + bottom + margin: auto + 부모 relative*/
   position: absolute;
   height: 75px;
   top: 0;
@@ -360,19 +361,23 @@ header .badges .badge {
   font-weight: 700;
   margin-right: 20px;
 }
+
 .notice .notice-line .inner .inner__left .swiper-container {
   height: 62px;
   /*  남은 공간을 다써라 */
   flex-grow: 1;
 }
+
 .notice .notice-line .inner .inner__left .swiper-slide {
   height: 62px;
   display: flex;
   align-items: center;
 }
+
 .notice .notice-line .inner .inner__left .swiper-slide a {
   color: #fff;
 }
+
 .notice .notice-line .inner .inner__left .notice-line__more {
   width: 62px;
   height: 62px;
@@ -380,22 +385,26 @@ header .badges .badge {
   justify-content: center;
   align-items: center;
 }
+
 .notice .notice-line .inner .inner__left .notice-line__more .material-icons {
   color: #fff;
   font-size: 30px;
 }
+
 .notice .notice-line .inner .inner__right {
   width: 40%;
   height: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
+
 .notice .notice-line .inner .inner__right h2 {
   font-size: 17px;
   font-weight: 700;
   margin-right: 20px;
 }
+
 .notice .notice-line .inner .inner__right .toggle-promotion {
   width: 62px;
   height: 62px;
@@ -404,6 +413,103 @@ header .badges .badge {
   justify-content: center;
   align-items: center;
 }
+
 .notice .notice-line .inner .inner__right .toggle-promotion .material-icons {
   font-size: 30px;
+}
+
+.notice .promotion {
+  height: 693px;
+  background-color: #f6f5ef;
+  position: relative;
+}
+
+.notice .promotion .swiper-container {
+  /* calc 함수 */
+  width: calc(819px * 3 + 20px);
+  height: 553px;
+  top: 40px;
+  /* 확대해도 element를 화면 정중앙으로 고정시키기 */
+  position: absolute;
+  /* 50% 밀어서 배치하고 */
+  left: 50%;
+  /* margin을  -1 * (width/2) 값 세팅해서 땡겨오기 */
+  /* margin-left: -1238.5px; */
+  margin-left: calc((819px * 3 + 20px) / -2);
+}
+
+/* 가운데 swiper-slice-active 만 불투명도 주기 */
+.notice .promotion .swiper-slide {
+  opacity: 0.5;
+  transition: 1s;
+  position: relative;
+}
+.notice .promotion .swiper-slide-active {
+  opacity: 1;
+}
+
+.notice .promotion .swiper-slide .btn {
+  /*width: 130px;*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+/* swiper lib 에서 position: ablolute 미리 세팅해둠 */
+.notice .promotion .swiper-pagination {
+  bottom: 40px;
+  left: 0;
+  right: 0;
+}
+
+.notice .promotion .swiper-pagination .swiper-pagination-bullet {
+  background-image: url('../images/promotion_slide_pager.png');
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  outline: none;
+  /* transparent 배경색 투명 */
+  background-color: transparent;
+}
+
+.notice .promotion .swiper-pagination .swiper-pagination-bullet:last-child {
+  margin-right: 0px;
+}
+
+.notice .promotion .swiper-pagination .swiper-pagination-bullet-active {
+  background-image: url('../images/promotion_slide_pager_on.png');
+}
+
+.notice .promotion .swiper-prev,
+.notice .promotion .swiper-next {
+  width: 42px;
+  height: 42px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: absolute;
+  top: 300px;
+  z-index: 1;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+.notice .promotion .swiper-prev {
+  left: 50%;
+  margin-left: -480px;
+}
+
+.notice .promotion .swiper-next {
+  right: 50%;
+  margin-right: -480px;
+}
+
+.notice .promotion .swiper-prev:hover,
+.notice .promotion .swiper-next:hover {
+  background-color: #333;
+  color: #fff;
 }
