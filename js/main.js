@@ -59,9 +59,27 @@ fadeEls.forEach((fadeEl, index) => {
   });
 });
 
-// swiper lib 사용
+// swiper-vertical:: swiper lib 사용
 new Swiper('.notice-line .swiper-container', {
   direction: 'vertical',
   autoplay: true,
   loop: true,
+});
+
+new Swiper('.promotion .swiper-container', {
+  slidesPerView: 3, // 한번에 보여줄 슬라이드 개수
+  spaceBetween: 10, // 슬라이드 사이의 여백
+  centeredSlides: true, // 1번 슬라이드가 가운데부터
+  autoplay: {
+    delay: 2000, // miliseconds
+  },
+  loop: true,
+  pagination: {
+    el: '.promotion .swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    prevEl: '.promotion .swiper-prev',
+    nextEl: '.promotion .swiper-next',
+  },
 });
