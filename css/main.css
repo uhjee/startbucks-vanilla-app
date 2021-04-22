@@ -41,38 +41,47 @@ a {
   display: block;
   transition: 0.4s;
 }
+
 .btn:hover {
   background-color: #333;
   color: #fff;
 }
+
 .btn.btn--reverse {
   background-color: #333;
   color: #fff;
 }
+
 .btn.btn--reverse:hover {
   background-color: transparent;
   color: #333;
 }
+
 .btn.btn--brown {
   color: #592b18;
   border-color: #592b18;
 }
+
 .btn.btn--brown:hover {
   color: #fff;
   background-color: #592b18;
 }
+
 .btn.btn--gold {
   color: #d9aa8a;
   border-color: #d9aa8a;
 }
+
 .btn.btn--gold:hover {
   color: #fff;
   background-color: #d9aa8a;
 }
+
 .btn.btn--white {
   color: #fff;
   border-color: #fff;
 }
+
 .btn.btn--white:hover {
   color: #333;
   background-color: #fff;
@@ -113,9 +122,11 @@ header .sub-menu ul.menu {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
 }
+
 header .sub-menu ul.menu li {
   position: relative;
 }
+
 header .sub-menu ul.menu li::before {
   /* content 속성이 없으면 before 가상요소가 생성되지 않는다.  */
   content: '';
@@ -139,14 +150,17 @@ header .sub-menu ul.menu li a {
   display: block;
   color: #656565;
 }
+
 header .sub-menu ul.menu li a:hover {
   /* 검정색: #000000 */
   color: #000;
 }
+
 header .sub-menu .search {
   height: 34px;
   position: relative;
 }
+
 header .sub-menu .search input {
   width: 36px;
   height: 34px;
@@ -193,8 +207,7 @@ header .main-menu {
   z-index: 1;
   display: flex;
 }
-header .main-menu .item {
-}
+
 header .main-menu .item .item__name {
   padding: 10px 20px 34px 20px;
   font-family: Arial, Helvetica, sans-serif;
@@ -234,31 +247,32 @@ header .main-menu .item .item__contents .contents__menu > ul > li h4 {
   font-size: 14px;
   color: #fff;
 }
-header .main-menu .item .item__contents .contents__menu > ul > li ul {
-}
+
 header .main-menu .item .item__contents .contents__menu > ul > li ul li {
   padding: 5px 0;
   font-size: 12px;
   color: #999;
   cursor: pointer;
 }
+
 header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
   color: #669900;
 }
+
 header .main-menu .item .item__contents .contents__texture {
   padding: 26px 0;
   font-size: 12px;
   background-image: url('../images/main_menu_pattern.jpg');
 }
+
 header .main-menu .item .item__contents .contents__texture {
   color: #999;
   font-weight: 700;
 }
+
 header .main-menu .item .item__contents .contents__texture h4 {
   color: #669900;
   margin: 4px 0 14px;
-}
-header .main-menu .item .item__contents .contents__texture p {
 }
 
 header .badges {
@@ -323,8 +337,6 @@ header .badges .badge {
   opacity: 0;
 }
 
-.notice {
-}
 .notice .notice-line {
   position: relative;
 }
@@ -422,6 +434,17 @@ header .badges .badge {
   height: 693px;
   background-color: #f6f5ef;
   position: relative;
+  /* 숨김처리  transition */
+  transition: height 0.3s;
+  /* 숨김처리 -  자식 요소들이 넘치면 모두 숨기도록 처리 */
+  overflow: hidden;
+}
+
+/* 숨김 처리 - display:none 으로 처리할 줄 알았는데, 신기하게도 height: 0  */
+/* transition 효과도 줄 수 있어서 좋은 듯, 화면에서만 안보이는 게 아니라 아예 안잡힘*/
+.notice .promotion.hide {
+  height: 0;
+  /* display: none; */
 }
 
 .notice .promotion .swiper-container {
@@ -512,4 +535,49 @@ header .badges .badge {
 .notice .promotion .swiper-next:hover {
   background-color: #333;
   color: #fff;
+}
+
+.rewards {
+  position: relative;
+}
+.rewards .bg-left {
+  width: 50%;
+  height: 100%;
+  background-color: #272727;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.rewards .bg-right {
+  width: 50%;
+  height: 100%;
+  background-color: #d5c798;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.rewards .inner {
+  background-image: url('../images/rewards.jpg');
+  height: 241px;
+}
+
+.rewards .btn-group {
+  position: absolute;
+  bottom: 24px;
+  right: 0;
+  width: 250px;
+  display: flex;
+  /* widthfmf 넘치더라도 줄바꿈 허용 -> button 2개만 */
+  flex-wrap: wrap;
+}
+.rewards .btn-group .sign-up {
+  margin-right: 10px;
+}
+.rewards .btn-group .sign-in {
+  width: 110px;
+}
+.rewards .btn-group .gift {
+  margin-top: 10px;
+  flex-grow: 1;
 }

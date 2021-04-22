@@ -25,7 +25,7 @@ const badgesEl = document.querySelector('header .badges');
 window.addEventListener(
   'scroll',
   _.throttle(() => {
-    console.log(window.scrollY);
+    // console.log(window.scrollY);
     if (window.scrollY > 500) {
       // badge element 숨기기
       // badgesEl.style.display = 'none';
@@ -82,4 +82,20 @@ new Swiper('.promotion .swiper-container', {
     prevEl: '.promotion .swiper-prev',
     nextEl: '.promotion .swiper-next',
   },
+});
+
+// 프로모션 버튼 클릭시 드랍다운
+const promotionEl = document.querySelector('.promotion');
+const promotionToggleBtn = document.querySelector('.toggle-promotion');
+
+// 숨김 플래그
+let isHidePromotion = false;
+
+promotionToggleBtn.addEventListener('click', () => {
+  isHidePromotion = !isHidePromotion;
+  if (isHidePromotion) {
+    promotionEl.classList.add('hide');
+  } else {
+    promotionEl.classList.remove('hide');
+  }
 });
