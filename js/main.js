@@ -99,3 +99,30 @@ promotionToggleBtn.addEventListener('click', () => {
     promotionEl.classList.remove('hide');
   }
 });
+
+// 둥둥 떠다니는 애니메이션 (gsap 사용)
+// argument : 선택자, 지연시간, 움직이는 높이
+function floatingObject(selector, delay, size) {
+  gsap.to(
+    selector, // 01. 선택자
+    random(1.5, 2.5), // 02. 지속시간(sec)
+    // 03. Options
+    {
+      y: size,
+      repeat: -1, // infinite
+      yoyo: true, //한번 재생 끝나고, 다시 역으로 재생할 것인지에 대한 option
+      // easing function:  https://greensock.com/docs/v2/Easing 참조
+      ease: Power2.easeInOut,
+      delay: random(0, delay),
+    },
+  );
+}
+
+floatingObject('.floating1', 1, 15);
+floatingObject('.floating2', 1.5, 15);
+floatingObject('.floating3', 1.8, 30);
+
+// 랜덤(소수점 2자리) 숫자 반환
+function random(min, max) {
+  return parseFloat((Math.random() * (max - min) + min).toFixed(2));
+}

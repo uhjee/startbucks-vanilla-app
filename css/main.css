@@ -581,3 +581,74 @@ header .badges .badge {
   margin-top: 10px;
   flex-grow: 1;
 }
+
+/* YOUTUBE */
+.youtube {
+  position: relative;
+  height: 700px;
+  background-color: #333;
+
+  /* 자식 요소중 넘치는 요소 안보이게 하기 (여기서는 youtube 영상) */
+  overflow: hidden;
+}
+.youtube .youtube__area {
+  background-color: orange;
+
+  /* left: 50%, top: 50% 를 사용해 구조상 부모의 가운데 위치하기 */
+  width: 1920px;
+  position: absolute;
+  /* 16비율 */
+  left: 50%;
+  margin-left: calc(1920px / -2);
+  /* 9비율 */
+  top: 50%;
+  margin-top: calc(1920px * 9 / 16 / -2);
+}
+.youtube .youtube__area::before {
+  content: '';
+  /* 부모 요소의 가로, 세로 비율을 유지하기 위해 */
+  /* ::before 가상요소는 inline 요소이기 떄문에 */
+  display: block;
+  width: 100%;
+  height: 0;
+  /* 영상 출력 비율 16 : 9 */
+  padding-top: 56.25%;
+}
+/* stack order의 3번 조건: 가장 늦게 선언된 css 요소가 위에 쌓임 */
+.youtube .youtube__cover {
+  background-image: url(../images/video_cover_pattern.png);
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#player {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.youtube .inner {
+  height: 700px;
+}
+
+.youtube .floating1 {
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+.youtube .floating2 {
+  position: absolute;
+  top: 350px;
+  left: 150px;
+}
+.youtube .floating3 {
+  position: absolute;
+  bottom: -200px;
+  right: 0;
+}
