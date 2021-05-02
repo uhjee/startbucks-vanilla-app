@@ -20,6 +20,7 @@ searchInputEl.addEventListener('blur', () => {
 
 // badge 관련 이벤트
 const badgesEl = document.querySelector('header .badges');
+const toTopEl = document.querySelector('#to-top');
 
 // lodash - throttle() : 헬퍼함수의 호출 간격을 조절한다.
 window.addEventListener(
@@ -27,7 +28,7 @@ window.addEventListener(
   _.throttle(() => {
     // console.log(window.scrollY);
     if (window.scrollY > 500) {
-      // badge element 숨기기
+      // 뱃지 element 숨기기
       // badgesEl.style.display = 'none';
       // 에니메이션 효과 lib - gsap
       // gsap.to(요소, 지속시간, 옵션);
@@ -35,6 +36,11 @@ window.addEventListener(
         // badgesEl의 불투명도를  0으로 0.6초동안 변환
         opacity: 0,
         display: 'none',
+      });
+
+      // 위로 가기 버튼
+      gsap.to(toTopEl, 0.2, {
+        x: 0,
       });
     } else {
       // badge element 보이기
@@ -44,9 +50,22 @@ window.addEventListener(
         opacity: 1,
         display: 'block',
       });
+      // 위로 가기 버튼
+      gsap.to(toTopEl, 0.2, {
+        // 오른쪽으로 100px 이동
+        x: 100,
+      });
     }
   }, 300),
 );
+
+// 위로 가기 버튼
+toTopEl.addEventListener('click', () => {
+  gsap.to(window, 0.7, {
+    // scroll을 0으로 이동
+    scrollTo: 0,
+  });
+});
 
 // fade-in 효과(gsap - delay option 사용)
 const fadeEls = document.querySelectorAll('.visual .fade-in');
@@ -66,6 +85,7 @@ new Swiper('.notice-line .swiper-container', {
   loop: true,
 });
 
+// new Swiper(선택자, 옵션)
 new Swiper('.promotion .swiper-container', {
   slidesPerView: 3, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10, // 슬라이드 사이의 여백
@@ -81,6 +101,18 @@ new Swiper('.promotion .swiper-container', {
   navigation: {
     prevEl: '.promotion .swiper-prev',
     nextEl: '.promotion .swiper-next',
+  },
+});
+
+// AWARDS 부분 수평 슬라이드
+new Swiper('.awards .swiper-container', {
+  autoplay: true,
+  loop: true,
+  spaceBetween: 30,
+  slidesPerView: 5, // 한 화면에 몇개를 보여줄 것인지
+  navigation: {
+    prevEl: '.awards .swiper-prev',
+    nextEl: '.awards .swiper-next',
   },
 });
 
@@ -140,3 +172,7 @@ spyEls.forEach((spyEl) => {
     // controller 개념 추가
     .addTo(new ScrollMagic.Controller());
 });
+
+//  Footer에 올해 데이터
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear();
