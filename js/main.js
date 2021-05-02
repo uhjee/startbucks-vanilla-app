@@ -126,3 +126,17 @@ floatingObject('.floating3', 1.8, 30);
 function random(min, max) {
   return parseFloat((Math.random() * (max - min) + min).toFixed(2));
 }
+
+// scrollMagic - 화면에 현재 요소가 표현되고 있는지 체크하는 lib
+const spyEls = document.querySelectorAll('section.scroll-spy');
+spyEls.forEach((spyEl) => {
+  // scene : 특정 요소를 감시하는 option 지정 - eventLIstener 개념
+  new ScrollMagic.Scene({
+    triggerElement: spyEl, // 보여짐 여부를 감시할 요소 지정
+    triggerHook: 0.8, // viewport의 스크롤 높이를 를 0~1로 표현, 위 요소가 0.8에 걸리면 트리거
+  })
+    // 위 트리거 발생시 실행할 메소드 : html class toggle 기능
+    .setClassToggle(spyEl, 'show')
+    // controller 개념 추가
+    .addTo(new ScrollMagic.Controller());
+});
