@@ -18,9 +18,9 @@ searchInputEl.addEventListener('blur', () => {
   searchInputEl.removeAttribute('placeholder');
 });
 
+// badge 관련 이벤트
 const badgesEl = document.querySelector('header .badges');
 
-// badge 관련 이벤트
 // lodash - throttle() : 헬퍼함수의 호출 간격을 조절한다.
 window.addEventListener(
   'scroll',
