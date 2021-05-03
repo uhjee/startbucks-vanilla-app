@@ -1,0 +1,406 @@
+/* COMMON */
+body {
+  /* css font 상속에 의해 모든 자손 element에 적용 */
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  /* google fonts family*/
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+img {
+  /* img는 inline 요소이기 떄문에 요소 아래에 공간을 갖는다. */
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* inner 클래스의 역할 : 내부 요소들은 화면 가운데로 정렬해주는 역할 */
+.inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.btn {
+  width: 130px;
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: 0.4s;
+}
+
+.btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn.btn--reverse {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn.btn--reverse:hover {
+  background-color: transparent;
+  color: #333;
+}
+
+.btn.btn--brown {
+  color: #592b18;
+  border-color: #592b18;
+}
+
+.btn.btn--brown:hover {
+  color: #fff;
+  background-color: #592b18;
+}
+
+.btn.btn--gold {
+  color: #d9aa8a;
+  border-color: #d9aa8a;
+}
+
+.btn.btn--gold:hover {
+  color: #fff;
+  background-color: #d9aa8a;
+}
+
+.btn.btn--white {
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn.btn--white:hover {
+  color: #333;
+  background-color: #fff;
+}
+
+.back-to-position {
+  /* 안보이게 불투명도 0 */
+  opacity: 0;
+  transition: 1s;
+}
+/* 왼쪽에서 오른쪽으로 나타나는 애니메이션 */
+.back-to-position.to-right {
+  transform: translateX(-150px);
+}
+/* 오른쪽에서 왼쪽으로 나타나는 애니메이션 */
+.back-to-position.to-left {
+  /* 기본적으로 x가 150px 밀려있게 세팅 */
+  transform: translateX(150px);
+}
+
+/* ScrollMagic이 붙여주는 class: show */
+.show .back-to-position {
+  /* 다시 보이도록  */
+  opacity: 1;
+  /* 위치를 원래대로  */
+  transform: translateX(0);
+}
+.show .back-to-position.delay-0 {
+  transition-delay: 0s;
+}
+.show .back-to-position.delay-1 {
+  transition-delay: 0.3s;
+}
+.show .back-to-position.delay-2 {
+  transition-delay: 0.6s;
+}
+.show .back-to-position.delay-3 {
+  transition-delay: 0.9s;
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  /* fixed 스크롤 영향 없도록 뷰포트에 고정 */
+  position: fixed;
+  top: 0;
+  background-color: #f6f5f0;
+  border-bottom: 1px solid #c8c8c8;
+  z-index: 9;
+}
+
+header > .inner {
+  height: 120px;
+}
+
+header .logo {
+  /* 세로 중앙(가운데) 배치 : height + top + bottom + margin: auto + 부모 relative*/
+  position: absolute;
+  height: 75px;
+  top: 0;
+  bottom: 0;
+  margin: auto auto;
+}
+
+/* @TODO 미리 html 구조대로 css 셀렉터를 선언해두고, 퍼블리싱하는 것도 좋은 방법 */
+header .sub-menu {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+}
+header .sub-menu ul.menu {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+}
+
+header .sub-menu ul.menu li {
+  position: relative;
+}
+
+header .sub-menu ul.menu li::before {
+  /* content 속성이 없으면 before 가상요소가 생성되지 않는다.  */
+  content: '';
+  width: 1px;
+  height: 12px;
+  background-color: #e5e5e5;
+  /* absolute  : display 가 block으로 변경 */
+  /* 아래 속성들로 수직 중앙 정렬 */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+header .sub-menu ul.menu li:first-child::before {
+  display: none;
+}
+/* a tag 등 click 요소는 보다 UX 측면에서 편리하도록 padding값을 넣어주자(block 요소로 변경) */
+header .sub-menu ul.menu li a {
+  font-size: 12px;
+  padding: 11px 16px;
+  display: block;
+  color: #656565;
+}
+
+header .sub-menu ul.menu li a:hover {
+  /* 검정색: #000000 */
+  color: #000;
+}
+
+header .sub-menu .search {
+  height: 34px;
+  position: relative;
+}
+
+header .sub-menu .search input {
+  width: 36px;
+  height: 34px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 10px;
+  /* focus 있을 때, 나타나는 파란 border */
+  outline: none;
+  /* cross-browsing: 흰색 명시적 통일 */
+  background-color: #fff;
+  color: #777;
+  font-size: 12px;
+
+  /* 전환효과  - width 만 적용*/
+  transition: width 0.4s;
+}
+header .sub-menu .search input:focus {
+  width: 190px;
+  border-color: #669900;
+}
+/* 돋보기 아이콘- google-material-icons */
+header .sub-menu .search .material-icons {
+  /* material-icon의 높이와 통일 */
+  height: 24px;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto 0;
+  /* transition: default 값  -> all*/
+  transition: 0.4s;
+}
+header .sub-menu .search.focused .material-icons {
+  /* icon 보이지 않도록 불투명도 0 */
+  opacity: 0;
+}
+
+header .main-menu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+}
+
+header .main-menu .item .item__name {
+  padding: 10px 20px 34px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+/* hover 클래스를 item에게 건다 */
+header .main-menu .item:hover .item__name {
+  background-color: #2c2a29;
+  color: #669900;
+  border-radius: 6px 6px 0 0;
+}
+header .main-menu .item .item__contents {
+  width: 100%;
+  /* viewport 기준 */
+  /* top, bottom 등 수직 정렬 속성을 넣지 않으면, 본래의 위치에 그대로 배치 */
+  position: fixed;
+  left: 0;
+
+  display: none;
+}
+/* hover 클래스를 item에게 건다 */
+header .main-menu .item:hover .item__contents {
+  display: block;
+}
+header .main-menu .item .item__contents .contents__menu {
+  background-color: #2c2a29;
+}
+header .main-menu .item .item__contents .contents__menu > ul {
+  display: flex;
+  padding: 20px 0;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li {
+  width: 220px;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li h4 {
+  padding: 3px 0 12px 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li ul li {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
+  color: #669900;
+}
+
+header .main-menu .item .item__contents .contents__texture {
+  padding: 26px 0;
+  font-size: 12px;
+  background-image: url('../images/main_menu_pattern.jpg');
+}
+
+header .main-menu .item .item__contents .contents__texture {
+  color: #999;
+  font-weight: 700;
+}
+
+header .main-menu .item .item__contents .contents__texture h4 {
+  color: #669900;
+  margin: 4px 0 14px;
+}
+
+header .badges {
+  position: absolute;
+  top: 132px;
+  right: 12px;
+}
+header .badges .badge {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  background-color: #272727;
+  border-top: 1px solid #333;
+}
+
+footer .inner {
+  padding: 40px 0 60px 0;
+}
+
+footer .menu {
+  display: flex;
+  justify-content: center;
+}
+
+footer .menu li {
+  position: relative;
+}
+/* before는 inline 요소..!! */
+footer .menu li::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  background-color: #555;
+  /* position: absolute, fixed => 자동으로 display block */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  margin: auto;
+}
+footer .menu li:last-child::before {
+  display: none;
+}
+footer .menu li a {
+  display: block;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 15px;
+}
+
+footer .menu li a.green {
+  color: #669900;
+}
+
+footer .btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+footer .btn-group .btn {
+  font-size: 12px;
+  margin-right: 10px;
+}
+footer .btn-group .btn:last-child {
+  margin-right: 0;
+}
+
+footer .info {
+  margin-top: 30px;
+  text-align: center;
+}
+
+footer .info span {
+  margin-right: 20px;
+  color: #999;
+  font-size: 12px;
+}
+footer .info span:last-child {
+  margin-right: 0;
+}
+
+footer .copyright {
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+footer .logo {
+  margin: 30px auto 0;
+}
